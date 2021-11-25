@@ -1,11 +1,11 @@
 FROM golang:1.15.6-alpine
 
 
-# # 时区配置
-# 有时候构建会安装 tzdata 特别慢,为了避免学习k8s的时候被这个慢打断就先注释
-# RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-# RUN echo 'Asia/Shanghai' > /etc/timezone
-# RUN apk add tzdata
+# 时区配置
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN echo 'Asia/Shanghai' > /etc/timezone
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+RUN apk add tzdata
 
 
 # go模块代理
